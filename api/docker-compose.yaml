@@ -1,0 +1,6 @@
+# version: "3.7"
+# services:
+#   simple-api:
+#     image: ngtrdai197/simple-app-api:latest
+#     ports:
+#       - "3333:3333"
