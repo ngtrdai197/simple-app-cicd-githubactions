@@ -7,38 +7,38 @@ on:
   pull_request:
     branches:
       - master
-    paths:
-      - "api/**"
+    # paths:
+    #   - "api/**"
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [10.x, 12.x, 14.x, 15.x]
     steps:
-      - uses: actions/checkout@v2'
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm install
-      - name: "Run testing by Jest"
+      - name: Run testing by Jest
         run: npm run test
 
-  build:
-    runs-on: ubuntu-latest
-    if: ${{ success() }}
-    steps:
-      - uses: actions/checkout@v2'
-      - name: "Docker starting build image ..."
-      - run: cd api && docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
-      - name: "Docker starting to the docker hub ..."
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_IMAGE: ngtrdai197/simple-app-api
-          DOCKER_TAG: latest
-      - name: "Docker starting push image to the docker hub ..."
-      - run: docker push $DOCKER_IMAGE:$DOCKER_TAG
+  # build:
+  #   runs-on: ubuntu-latest
+  #   if: ${{ success() }}
+  #   steps:
+  #     - uses: actions/checkout@v2'
+  #     - name: "Docker starting build image ..."
+  #     - run: cd api && docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+  #     - name: "Docker starting to the docker hub ..."
+  #     - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  #       env:
+  #         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  #         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  #         DOCKER_IMAGE: ngtrdai197/simple-app-api
+  #         DOCKER_TAG: latest
+  #     - name: "Docker starting push image to the docker hub ..."
+  #     - run: docker push $DOCKER_IMAGE:$DOCKER_TAG
