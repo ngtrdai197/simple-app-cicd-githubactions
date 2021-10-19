@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["12"]
+        node-version: ['12']
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -34,13 +34,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: "Docker starting build image ..."
-        run: cd api && docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+        run: cd api && docker build -t ngtrdai197/simple-app-api:latest .
       - name: "Docker starting login to the docker hub ..."
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: "Docker starting push image to the docker hub ..."
-        run: docker push $DOCKER_IMAGE:$DOCKER_TAG
+        run: docker push ngtrdai197/simple-app-api:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_IMAGE: ngtrdai197/simple-app-api
-          DOCKER_TAG: latest
+      
