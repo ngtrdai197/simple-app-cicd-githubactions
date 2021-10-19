@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        working-directory: ../api
+        working-directory: /api
         run: npm install
       - name: Run testing by Jest
         run: npm run test
