@@ -30,9 +30,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    if: ${{ success() }}
+    needs: test
     steps:
-      - uses: actions/checkout@v2'
+      - uses: actions/checkout@v2
       - name: "Docker starting build image ..."
         run: cd api && docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
       - name: "Docker starting to the docker hub ..."
