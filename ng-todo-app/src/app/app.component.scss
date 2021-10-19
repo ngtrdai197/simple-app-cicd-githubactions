@@ -1,0 +1,31 @@
+:host {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+}
+
+.cover-input {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 50px 0;
+  align-items: center;
+
+  input {
+    padding: 15px 20px;
+    border-radius: 16px;
+    outline: none;
+    width: 50%;
+  }
+}
+
+.ng-invalid.ng-touched {
+  border: 1px solid #ed3737;
+  color: #ed3737;
+}
+
+.danger {
+  margin: 5px 0;
+  color: #ed3737;
+}
+

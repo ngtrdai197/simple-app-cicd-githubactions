@@ -1,0 +1,10 @@
+<div class="cover-input">
+  <input type="text" placeholder="Enter Todo ..." [formControl]="todoForm" (keyup.enter)="onSubmit()"/>
+  <div *ngIf="todoForm?.invalid && (todoForm?.touched || todoForm?.dirty || todoForm?.errors?.invalidWhiteSpace)" class="danger">
+    Todo name invalid / or has white space at end of value
+  </div>
+  <div *ngIf="todoForm?.dirty && todoForm?.errors?.minlength" class="danger">Todo name must be at least 5 characters
+    long.
+  </div>
+</div>
+<app-todo-list [todoName]="todoName"></app-todo-list>

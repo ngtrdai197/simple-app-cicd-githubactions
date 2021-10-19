@@ -1,0 +1,6 @@
+<app-each-todo *ngFor="let todo of todos$ | async" [todo]="todo"
+               (todoSelected)="onTodoSelected($event)"></app-each-todo>
+
+<ng-container *ngIf="(todoSelected$ | async) as todo">
+  <pre>{{todo | json}}</pre>
+</ng-container>

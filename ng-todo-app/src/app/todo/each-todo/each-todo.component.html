@@ -1,0 +1,4 @@
+<ul data-id="{{todo.id}}" (click)="todoSelected.emit(todo)">
+  <li>{{todo.name}}</li>
+  <li>{{todo.status | todoStatus}}</li>
+</ul>
