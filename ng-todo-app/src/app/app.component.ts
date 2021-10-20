@@ -7,7 +7,7 @@ import {FormControl, Validators} from "@angular/forms";
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-	title = "Todo App";
+	title = "Simple Todo App";
 	public todoName = "";
 	public todoForm: FormControl = new FormControl([""], [Validators.minLength(5)]);
 
