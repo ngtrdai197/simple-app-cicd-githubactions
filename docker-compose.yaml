@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  simple-api:
+    image: ngtrdai197/simple-app-api:latest
+    container_name: simple-todo-api
+    ports:
+      - "3000:3000"
+    networks:
+      - simple-app-network
+  simple-app:
+    image: ngtrdai197/simple-ng-todo-app:latest
+    container_name: simple-todo-app
+    ports:
+      - "800:80"
+    networks:
+      - simple-app-network
+networks:
+  simple-app-network:
+    driver: bridge
