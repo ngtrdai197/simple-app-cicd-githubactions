@@ -1,24 +1,29 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
+  private readonly logger = new Logger(AppService.name);
   getHello(): string {
     return 'Hello World!';
   }
 
   public getMe() {
-    return {
+    const obj = {
       name: 'Dai Nguyen',
       phone: '0375629888',
       age: 24,
       city: 'HCMC',
-      gender: "Male"
+      gender: 'Male',
     };
+    this.logger.debug(JSON.stringify(obj));
+    return obj;
   }
 
   public getCoporate() {
-    return {
+    const obj = {
       name: 'Bnk Solution',
     };
+    this.logger.debug(JSON.stringify(obj));
+    return obj;
   }
 }
