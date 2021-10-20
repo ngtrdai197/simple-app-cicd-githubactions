@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('Healthy check api', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "Hello there!"', () => {
+      expect(appController.getHello()).toBe('Hello there!');
     });
   });
   describe('Fetch information of me', () => {
