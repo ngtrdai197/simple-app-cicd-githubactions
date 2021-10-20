@@ -27,9 +27,6 @@ jobs:
           context: ./ng-todo-app
           push: true
           tags: ngtrdai197/simple-ng-todo-app:latest
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy-web-app:
     runs-on: ubuntu-latest

@@ -11,7 +11,7 @@ services:
     image: ngtrdai197/simple-ng-todo-app:latest
     container_name: simple-todo-app
     ports:
-      - "800:80"
+      - "80:80"
     networks:
       - simple-app-network
 networks:

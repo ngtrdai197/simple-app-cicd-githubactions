@@ -49,9 +49,6 @@ jobs:
           context: ./api
           push: true
           tags: ngtrdai197/simple-app-api:latest
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy-api:
     runs-on: ubuntu-latest
