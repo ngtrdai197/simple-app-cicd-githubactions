@@ -22,11 +22,11 @@ describe('AppController', () => {
   describe('Fetch information of me', () => {
     it('should return "Object"', () => {
       expect(appController.getMe()).toMatchObject({
-        name: 'Dai Nguyen Update',
+        name: 'Dai Nguyen',
         phone: '0375629888',
         age: 24,
         city: 'HCMC',
-        gender: "Male"
+        gender: 'Male',
       });
     });
   });
