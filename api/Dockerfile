@@ -1,29 +1,33 @@
-FROM node:12.13-alpine As development
+FROM node:12.13-alpine AS builder
 
-WORKDIR /usr/src/app
+RUN apk add --no-cache --virtual .gyp python make g++ rsync
+COPY package.json /build/package.json
 
-COPY package*.json ./
+RUN cd /build && \
+  npm install
 
-RUN npm install
+COPY . /build
 
-COPY . .
+RUN cd /build && \
+  npm run build && \
+  rm -rf node_modules && \
+  npm install --production
 
-RUN npm run build
+WORKDIR /app/
 
-FROM node:12.13-alpine as production
+# End builder stage
+# End install-dep-prod stage
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+FROM node:12.4.0-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app/
 
-COPY package*.json ./
+COPY --from=builder /build/dist ./dist
+COPY --from=builder /build/node_modules ./node_modules
 
-RUN npm install --only=production
+COPY --from=builder /build/.env .
+COPY --from=builder /build/package.json .
 
 EXPOSE 3000
-
-COPY --from=development /usr/src/app/dist ./dist
-COPY --from=development /usr/src/app/.env ./dist
-
 CMD ["npm", "run", "start:prod"]
+# End
