@@ -24,5 +24,6 @@ RUN npm install --only=production
 EXPOSE 3000
 
 COPY --from=development /usr/src/app/dist ./dist
+COPY --from=development /usr/src/app/.env ./dist
 
 CMD ["npm", "run", "start:prod"]
