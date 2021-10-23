@@ -5,7 +5,7 @@ export const enum TODO_STATUS {
 }
 
 export interface ITodo {
-  id: string;
+  _id: string;
   name: string;
   status: TODO_STATUS;
 }

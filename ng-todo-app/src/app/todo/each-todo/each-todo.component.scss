@@ -1,17 +1,31 @@
 :host {
-  display: block;
-  margin-bottom: 10px;
-  padding: 4px;
-  &:nth-child(2n+1) {
-    background: #ececec;
-  }
-  &:hover{
-    cursor: pointer;
-  }
+	display: block;
+	margin-bottom: 10px;
+	padding: 4px;
+	&:nth-child(2n + 1) {
+		background: #ececec;
+	}
+	&:hover {
+		cursor: pointer;
+	}
 }
 ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	.delete {
+		margin-left: 12px;
+		cursor: pointer;
+		font-size: 12px;
+		&:hover {
+			color: #ed3735;
+		}
+	}
+}
+.name {
+	cursor: pointer;
+	&:hover {
+		color: #29938e;
+	}
 }

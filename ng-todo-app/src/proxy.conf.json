@@ -1,0 +1,7 @@
+{
+	"/api": {
+		"target": "http://simple-api.tk/api",
+		"secure": false,
+        "changeOrigin": true
+	}
+}

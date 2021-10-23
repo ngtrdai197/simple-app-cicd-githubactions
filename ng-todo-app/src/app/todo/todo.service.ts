@@ -1,44 +1,28 @@
-import {Injectable} from '@angular/core';
-import {from, Observable, of} from 'rxjs';
-import {filter} from 'rxjs/operators';
-import {ITodo, TODO_STATUS} from './todo.interface';
-import {generateID} from '../helpers/generate-id';
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs";
+import {ITodo} from "./todo.interface";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: "root",
 })
 export class TodoService {
-  private TODOS: ITodo[] = [
-    {
-      id: generateID(),
-      name: 'Todo 1',
-      status: TODO_STATUS.IN_PROGRESS
-    },
-    {
-      id: generateID(),
-      name: 'Todo 2',
-      status: TODO_STATUS.DONE
-    },
-    {
-      id: generateID(),
-      name: 'Todo 3',
-      status: TODO_STATUS.PENDING
-    }
-  ];
+	constructor(private readonly http: HttpClient) {}
 
-  constructor() {
-  }
+	public fetchTodoList(): Observable<ITodo[]> {
+		return this.http.get<ITodo[]>(`${environment.API_URL}/todos`);
+	}
 
-  public fetchTodoList(): Observable<ITodo[]> {
-    return of(this.TODOS);
-  }
+	public fetchTodoById(todoId: string): Observable<ITodo> {
+		return this.http.get<ITodo>(`${environment.API_URL}/todos/${todoId}`);
+	}
 
-  public fetchTodoById(todoId: string): Observable<ITodo> {
-    return from(this.TODOS).pipe(filter(todo => todo.id === todoId));
-  }
+	public createNewTodo(todo: ITodo): Observable<ITodo> {
+		return this.http.post<ITodo>(`${environment.API_URL}/todos`, {name: todo.name});
+	}
 
-  public createNewTodo(todo: ITodo): Observable<ITodo> {
-    this.TODOS.push(todo);
-    return of(todo);
-  }
+	public deleteTodoById(id: string) {
+		return this.http.delete(`${environment.API_URL}/todos/${id}`);
+	}
 }
